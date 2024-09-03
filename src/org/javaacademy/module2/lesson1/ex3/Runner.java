@@ -4,7 +4,7 @@ public class Runner {
     public static void main(String[] args) {
         String text1 = "Hello World";
         String text2 = "Я изучаю Java!";
-        String text3 = "Djenerics";
+        String text3 = "Generics";
         Container<String> container1 = new Container<>(text1, text2, text3);
         System.out.println(container1);
 
