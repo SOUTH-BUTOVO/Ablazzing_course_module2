@@ -1,4 +1,4 @@
-package org.javaacademy.module2.lesson2.homework.ex1_zoo;
+package org.javaacademy.module2.lesson2.homework_1.ex1_zoo;
 
 //Задание №1 Зоопарк
 //1. Создать три вида животных: Тигр - умеет рычать, Собака - умеет лаять, Птица - умеет летать.
@@ -16,8 +16,7 @@ package org.javaacademy.module2.lesson2.homework.ex1_zoo;
 //Получили первое животное (птица) - вызвали у него полет
 //Запрещено пользоваться instanceOf.
 
-import java.util.ArrayList;
-import java.util.List;
+import org.javaacademy.module2.lesson2.homework_1.ex1_zoo.animal.*;
 
 public class Runner {
     public static void main(String[] args) {
@@ -26,16 +25,21 @@ public class Runner {
         Dog dog = new Dog();
         Bird bird = new Bird();
 
-//        Zoo<Animal> animalZoo = new Zoo<>(new Tiger(), dog, bird);
-//        animalZoo.getAnimal1();
-//        animalZoo.getAnimal2();
-//        animalZoo.getAnimal3();
-//        System.out.println(animalZoo.getAnimal1());
+        Zoo<Tiger, Dog, Bird> animalZoo = new Zoo<>(tiger, dog, bird);
 
-        ArrayList<Animal> animals = new ArrayList<>();
-        animals.add(tiger);
+        System.out.println(animalZoo.getAnimal1());
+        animalZoo.getAnimal1().voice();
+        //org.javaacademy.module2.lesson2.homework.ex1_zoo.animal.Tiger@4c873330
+        //Тигр рычит
 
-        Zoo<Animal> animalZoo = new Zoo<>(animals);
+        System.out.println(animalZoo.getAnimal2());
+        animalZoo.getAnimal2().voice();
+        //org.javaacademy.module2.lesson2.homework.ex1_zoo.animal.Dog@119d7047
+        //Собака гав-гав
 
+        System.out.println(animalZoo.getAnimal3());
+        animalZoo.getAnimal3().fly();
+        //org.javaacademy.module2.lesson2.homework.ex1_zoo.animal.Bird@776ec8df
+        //Птица летит
     }
 }

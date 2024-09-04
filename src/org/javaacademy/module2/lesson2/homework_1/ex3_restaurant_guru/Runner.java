@@ -1,4 +1,4 @@
-package org.javaacademy.module2.lesson2.homework.ex3_restaurant_guru;
+package org.javaacademy.module2.lesson2.homework_1.ex3_restaurant_guru;
 
 //Задание №3 Ресторанный гуру
 //Николай Петрович ходит по ресторанам. За 5 дней он был во множестве ресторанов.
@@ -21,8 +21,10 @@ public class Runner {
         ArrayList<String> thursday = new ArrayList<>(List.of("Грех", "Ваниль", "Реберная", "Пянсе", "Фо бо"));
         ArrayList<String> friday = new ArrayList<>(List.of("Бёрдс", "Реберная", "Андерсон", "Ниппон", "Чифанька"));
 
-        for (int i = 0; i < monday.size(); i++) {
-
-        }
+        monday.retainAll(tuesday);
+        monday.retainAll(wednesday);
+        monday.retainAll(thursday);
+        monday.retainAll(friday);
+        System.out.println("Николай Петрович, был каждый день в ресторан(ы): " + monday);
     }
 }
