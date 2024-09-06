@@ -1,6 +1,6 @@
 package org.javaacademy.module2.lesson2.homework_1.ex1_zoo.animal;
 
-public class Zoo<T extends Tiger, D extends Dog, B extends Bird> {
+public class Zoo<T extends Animal, D extends Animal, B extends Animal> {
 
     private T animal1;
     private D animal2;
@@ -10,6 +10,17 @@ public class Zoo<T extends Tiger, D extends Dog, B extends Bird> {
         this.animal1 = animal1;
         this.animal2 = animal2;
         this.animal3 = animal3;
+    }
+
+    public void voiceTiger() {
+        //animal1.voice();
+    }
+    public void voiceDog() {
+        //animal2.voice();
+    }
+
+    public void flyBird() {
+        //animal3.fly();
     }
 
     public T getAnimal1() {

@@ -28,17 +28,17 @@ public class Runner {
         Zoo<Tiger, Dog, Bird> animalZoo = new Zoo<>(tiger, dog, bird);
 
         System.out.println(animalZoo.getAnimal1());
-        animalZoo.getAnimal1().voice();
+        animalZoo.voiceTiger();
         //org.javaacademy.module2.lesson2.homework.ex1_zoo.animal.Tiger@4c873330
         //Тигр рычит
 
         System.out.println(animalZoo.getAnimal2());
-        animalZoo.getAnimal2().voice();
+        animalZoo.voiceDog();
         //org.javaacademy.module2.lesson2.homework.ex1_zoo.animal.Dog@119d7047
         //Собака гав-гав
 
         System.out.println(animalZoo.getAnimal3());
-        animalZoo.getAnimal3().fly();
+        animalZoo.flyBird();
         //org.javaacademy.module2.lesson2.homework.ex1_zoo.animal.Bird@776ec8df
         //Птица летит
     }
