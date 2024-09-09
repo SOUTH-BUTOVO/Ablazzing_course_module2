@@ -58,7 +58,6 @@ public class Airport {
             }
             System.out.println("Лента пустая, закончена выдача багажа");
             System.out.println("----------------");
-
         }
     }
 }
