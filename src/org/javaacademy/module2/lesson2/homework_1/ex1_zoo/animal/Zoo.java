@@ -12,17 +12,6 @@ public class Zoo<T extends Animal, D extends Animal, B extends Animal> {
         this.animal3 = animal3;
     }
 
-    public void voiceTiger() {
-        //animal1.voice();
-    }
-    public void voiceDog() {
-        //animal2.voice();
-    }
-
-    public void flyBird() {
-        //animal3.fly();
-    }
-
     public T getAnimal1() {
         return this.animal1;
     }

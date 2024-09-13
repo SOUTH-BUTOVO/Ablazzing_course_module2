@@ -21,7 +21,7 @@ public class Runner {
     }
 
     private static double temperatureJanuary() {
-        ArrayList<Integer> listTemperatureJanuary = new ArrayList<>(List.of(0, -1, -1, -2, -5, -6, -7, -8, -9, -10, -5, -5, -2, -7, -3, -1, -8, -9, -8, -8, -18, -20, -23, -24, -25, -9, -8, -7, -6, -5, -1));
+        List<Integer> listTemperatureJanuary = List.of(0, -1, -1, -2, -5, -6, -7, -8, -9, -10, -5, -5, -2, -7, -3, -1, -8, -9, -8, -8, -18, -20, -23, -24, -25, -9, -8, -7, -6, -5, -1);
         int daysInJanuary = listTemperatureJanuary.size(); //31 дней в Феврале
 
         double temperatureJanuary = 0;
@@ -37,7 +37,7 @@ public class Runner {
     }
 
     private static double temperatureFebruary() {
-        ArrayList<Integer> listTemperatureFebruary = new ArrayList<>(List.of(-8, -10, -12, -13, -15, -16, -12, -7, -8, -10, -10, -9, -8, -8, -8, -9, -10, -9, -5, -6, -8, -7, -8, -9, -6, -5, -3, -1));
+        List<Integer> listTemperatureFebruary = List.of(-8, -10, -12, -13, -15, -16, -12, -7, -8, -10, -10, -9, -8, -8, -8, -9, -10, -9, -5, -6, -8, -7, -8, -9, -6, -5, -3, -1);
         int daysInFebruary = listTemperatureFebruary.size(); //28 дней в Феврале
 
         double temperatureFebruary = 0;

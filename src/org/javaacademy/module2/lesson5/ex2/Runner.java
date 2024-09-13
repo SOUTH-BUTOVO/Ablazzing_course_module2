@@ -1,0 +1,13 @@
+package org.javaacademy.module2.lesson5.ex2;
+
+import java.util.LinkedHashSet;
+
+public class Runner {
+    public static void main(String[] args) {
+        LinkedHashSet<String> stations = new LinkedHashSet<>();
+        stations.add("Станция №1");
+        stations.add("Станция №3");
+        stations.add("Станция №2");
+        System.out.println(stations);
+    }
+}

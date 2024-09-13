@@ -15,16 +15,17 @@ import java.util.List;
 
 public class Runner {
     public static void main(String[] args) {
-        ArrayList<String> monday = new ArrayList<>(List.of("Чебуречная №1", "Реберная", "Андерсон", "Ниппон", "Фо бо"));
-        ArrayList<String> tuesday = new ArrayList<>(List.of("Вареничная №1", "Пушкин", "Чебуречная №1", "Ниппон", "Реберная"));
-        ArrayList<String> wednesday = new ArrayList<>(List.of("Реберная", "Арарат", "Майя", "Ниппон", "Таксим"));
-        ArrayList<String> thursday = new ArrayList<>(List.of("Грех", "Ваниль", "Реберная", "Пянсе", "Фо бо"));
-        ArrayList<String> friday = new ArrayList<>(List.of("Бёрдс", "Реберная", "Андерсон", "Ниппон", "Чифанька"));
+        List<String> monday = List.of("Чебуречная №1", "Реберная", "Андерсон", "Ниппон", "Фо бо");
+        List<String> tuesday = List.of("Вареничная №1", "Пушкин", "Чебуречная №1", "Ниппон", "Реберная");
+        List<String> wednesday = List.of("Реберная", "Арарат", "Майя", "Ниппон", "Таксим");
+        List<String> thursday = List.of("Грех", "Ваниль", "Реберная", "Пянсе", "Фо бо");
+        List<String> friday = List.of("Бёрдс", "Реберная", "Андерсон", "Ниппон", "Чифанька");
 
-        monday.retainAll(tuesday);
-        monday.retainAll(wednesday);
-        monday.retainAll(thursday);
-        monday.retainAll(friday);
-        System.out.println("Николай Петрович, был каждый день в ресторан(ы): " + monday);
+        List<String> resultList = new ArrayList<>(monday);
+        for (List<String> day : List.of(tuesday, wednesday, thursday, friday)) {
+            resultList.retainAll(day);
+        }
+
+        System.out.println("Николай Петрович, был каждый день в ресторан(ах): " + resultList);
     }
 }
