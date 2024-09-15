@@ -1,0 +1,14 @@
+package org.javaacademy.module2.lesson6.ex2.factory;
+
+import org.javaacademy.module2.lesson6.ex2.CarFactory;
+import org.javaacademy.module2.lesson6.ex2.car.Audi;
+import org.javaacademy.module2.lesson6.ex2.car.Car;
+
+public class AudiFactory implements CarFactory {
+
+    @Override
+    public Car makeCar() {
+        System.out.println("Ауди создаётся!");
+        return new Audi();
+    }
+}
