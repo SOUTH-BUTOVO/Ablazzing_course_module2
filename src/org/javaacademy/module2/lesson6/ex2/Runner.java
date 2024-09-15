@@ -5,6 +5,8 @@ import org.javaacademy.module2.lesson6.ex2.car.Car;
 import org.javaacademy.module2.lesson6.ex2.factory.AudiFactory;
 import org.javaacademy.module2.lesson6.ex2.factory.BmwFactory;
 
+import java.util.function.Supplier;
+
 public class Runner {
     public static void main(String[] args) {
         AudiFactory audiFactory = new AudiFactory();
@@ -16,12 +18,12 @@ public class Runner {
         System.out.println(bmw);
         System.out.println("------");
 
-        CarFactory audiFunctionalFactory = () -> {
+        Supplier<Car> audiFunctionalFactory = () -> {
             System.out.println("Audi created!");
             return new Audi();
         };
 
-        Car audi2 = audiFunctionalFactory.makeCar();
+        Car audi2 = audiFunctionalFactory.get();
         System.out.println(audi2);
     }
 }

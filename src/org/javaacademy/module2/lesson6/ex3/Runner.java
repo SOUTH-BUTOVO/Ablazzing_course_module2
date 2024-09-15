@@ -1,5 +1,7 @@
 package org.javaacademy.module2.lesson6.ex3;
 
+import java.util.function.Predicate;
+
 public class Runner {
     public static void main(String[] args) {
 
@@ -31,7 +33,13 @@ public class Runner {
         NumberChecker isEvenChecker = num -> num % 2 == 0;
         System.out.println(isEvenChecker.check(25) ? "Число чётное" : "Число не чётное");
 
+        Predicate<Double> isEvenCheckerPredicate = num -> num % 2 == 0;
+        System.out.println(isEvenCheckerPredicate.test(18d) ? "Число чётное" : "Число не чётное");
+
         NumberChecker isMoreChecker = num -> num >= 10;
         System.out.println(isMoreChecker.check(10) ? "Число больше или равно 10" : "Число меньше 10");
+
+        Predicate<Double> isMoreCheckerPredicate = num -> num >= 10;
+        System.out.println(isMoreCheckerPredicate.test(8d) ? "Число больше или равно 10" : "Число меньше 10");
     }
 }
