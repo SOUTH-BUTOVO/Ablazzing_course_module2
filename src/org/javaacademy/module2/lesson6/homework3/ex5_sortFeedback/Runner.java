@@ -1,9 +1,9 @@
 package org.javaacademy.module2.lesson6.homework3.ex5_sortFeedback;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * Задание №5: сортировка отзывов
@@ -39,7 +39,6 @@ public class Runner {
                 100, dateFeedback4);
         Feedback feedback3 = new Feedback(3, "плохой товар",
                 10, dateFeedback3);
-        List<Feedback> feedbacks = new ArrayList<>(List.of(feedback1, feedback2, feedback4, feedback3));
 
         // Сортировка по количеству лайков
         Comparator<Feedback> byLikes = (cr1, cr2) -> cr1.getNumberOfLikes() - cr2.getNumberOfLikes();
@@ -48,15 +47,17 @@ public class Runner {
         // Сортировка по id
         Comparator<Feedback> byId = (cr1, cr2) -> cr1.getIdFeedback() - cr2.getIdFeedback();
 
-        // Добавляем сортировку через .thenComparing()
-        feedbacks.sort(byLikes.thenComparing(byDateTime.thenComparing(byId)));
+        // Создаём и добавляем сортировки через .thenComparing()
+        Comparator<Feedback> comparator = byLikes.thenComparing(byDateTime).thenComparing(byId);
+
+        Set<Feedback> feedbacks = new TreeSet<>(comparator);
+        feedbacks.add(feedback1);
+        feedbacks.add(feedback2);
+        feedbacks.add(feedback4);
+        feedbacks.add(feedback3);
 
         for (Feedback feedback : feedbacks) {
             System.out.println(feedback);
         }
-//        Feedback{idFeedback=3, textFeedback='плохой товар', numberOfLikes=10, dateTime=2024-01-25T13:37}
-//        Feedback{idFeedback=4, textFeedback='плохой товар', numberOfLikes=100, dateTime=2024-01-25T13:37}
-//        Feedback{idFeedback=2, textFeedback='так себе товар', numberOfLikes=100, dateTime=2024-01-25T16:37}
-//        Feedback{idFeedback=1, textFeedback='отличный товар', numberOfLikes=200, dateTime=2024-01-25T13:37}
     }
 }
