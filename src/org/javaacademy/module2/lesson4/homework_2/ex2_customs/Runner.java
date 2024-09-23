@@ -22,6 +22,8 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
+import static org.javaacademy.module2.lesson4.homework_2.ex2_customs.LuggageCategory.*;
+
 public class Runner {
     private static final String DELIMITER = ";";
 
@@ -36,32 +38,35 @@ public class Runner {
     private static Map<String, Integer> customs() throws IOException {
         // Создаём мапу для хранения статистики веса ввезенных чемоданов
         Map<String, Integer> baggageWeight = new HashMap<>();
-        baggageWeight.put("Лёгкий чемодан", 0); // Создаём статистику по лёгким чемоданам
-        int lightWeight = 0;
-        baggageWeight.put("Средний чемодан", 0); // Создаём статистику по средним чемоданам
-        int mediumWeight = 0;
-        baggageWeight.put("Тяжёлый чемодан", 0); // Создаём статистику по тяжёлым чемоданам
-        int heavyWeight = 0;
 
         Path pathBaggage = Path.of("resources/luggage.csv"); // Путь файла хранения прибывшего багажа
         try (BufferedReader reader = Files.newBufferedReader(pathBaggage)) { // Считываем файл
             reader.readLine(); // Пропускаем первую строку "Заголовок"
 
             String baggageAndWeight; // Строка № багажа ; вес багажа, не обрезанная
-            Integer baggage; // Вес багажа добавляемый в baggageWeight
+            Integer baggage = 0; // Вес багажа добавляемый в baggageWeight
 
             while ((baggageAndWeight = reader.readLine()) != null) {
                 int indexEnd = baggageAndWeight.indexOf(DELIMITER) + 1;
                 baggage = Integer.parseInt(baggageAndWeight.substring(indexEnd));
-                if (baggage < 5) {
-                    lightWeight += baggage;
-                    baggageWeight.put("Лёгкий чемодан", lightWeight); // Добавляем в мапу значение, по ключу
-                } else if (baggage >= 5 && baggage < 10) {
-                    mediumWeight += baggage;
-                    baggageWeight.put("Средний чемодан", mediumWeight); // Добавляем в мапу значение, по ключу
+                if (baggage < LIGHT.getMaxLimit()) {
+                    baggageWeight.put(LIGHT.getName(), baggageWeight.getOrDefault(LIGHT.getName(), 0) +
+                            baggage);
+                } else if (baggage < MIDDLE.getMaxLimit()) {
+                    baggageWeight.put(MIDDLE.getName(), baggageWeight.getOrDefault(MIDDLE.getName(), 0) +
+                            baggage);
                 } else {
-                    heavyWeight += baggage;
-                    baggageWeight.put("Тяжёлый чемодан", heavyWeight); // Добавляем в мапу значение, по ключу
+                    baggageWeight.put(HEAVY.getName(), baggageWeight.getOrDefault(HEAVY.getName(), 0) +
+                            baggage);
+                }
+            }
+            for (int i = 0; i < values().length; i++) {
+                LuggageCategory category = values()[i];
+                int limit = category.getMaxLimit() == null ? Integer.MAX_VALUE : category.getMaxLimit();
+                if (baggage < limit) {
+                    baggageWeight.put(category.getName(), baggageWeight.getOrDefault(category.getName(), 0)
+                            + baggage);
+                    break;
                 }
             }
         }
