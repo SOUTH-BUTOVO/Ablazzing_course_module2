@@ -52,5 +52,12 @@ public class Runner {
         System.out.println(integerList.get(0) + " Печать первого элемента листа с удалёнными вложениями");
         System.out.println("\nФлатМап - Устранение вложенности");
         System.out.println("------------");
+
+        // Sorted - Сортировка элементов
+        List<Integer> unsortedNumbers = List.of(5, 9, 2, 4, 4);
+        System.out.println(unsortedNumbers + "Origin");
+        unsortedNumbers.stream().sorted((a, b) -> b - a).forEach(e -> System.out.print(" " + e + " "));
+        System.out.println("\nСорт - Сортировка элементов");
+        System.out.println("------------");
     }
 }
