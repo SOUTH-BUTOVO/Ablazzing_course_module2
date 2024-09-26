@@ -1,6 +1,8 @@
 package org.javaacademy.module2.lesson8.homework4.ex1_autonum;
 
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -64,15 +66,24 @@ public class Runner {
     }
 
     private static void resultStream() {
-        // Объединяем машины в единый стрим и получаем номера выдаваемые чиновникам
+        // Объединяем машины в единый стрим
         Stream<Car> streamCar = Stream.concat(listCar1().stream(), listCar2().stream());
-        streamCar
-                // С регулярным выражением у меня не получилось(( потратил много времени.
-                //.filter(car -> Pattern.matches("^\\w{1}00[2-3]\\w{2}\\d{3}$", car.getCarNum()))
-                .filter(car -> {
+
+        Map<Boolean, List<String>> partitioned = streamCar
+                // Разделяем элементы на две группы
+                .collect(Collectors.partitioningBy(car -> {
                     String num = car.getCarNum().substring(1, 4);
+                    // С регулярным выражением у меня не получилось((
+                    //.filter(car -> Pattern.matches("^\\w{1}00[2-3]\\w{2}\\d{3}$", car.getCarNum()))
                     return Integer.parseInt(num) >= 40 && Integer.parseInt(num) <= 49;
-                })
-                .forEach(car -> System.out.println(car.getCarNum() + " - номер выданный чиновнику"));
+                }, Collectors.mapping(car -> car.getCarNum(), Collectors.toList())));
+
+        List<String> official = partitioned.get(true);
+        List<String> remnant = partitioned.get(false);
+
+        System.out.println("номера выданные чиновникам:");
+        System.out.println(official);
+        System.out.println("оставшиеся выданные номера:");
+        System.out.println(remnant);
     }
 }
