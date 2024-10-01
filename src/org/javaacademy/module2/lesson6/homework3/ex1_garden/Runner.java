@@ -2,7 +2,6 @@ package org.javaacademy.module2.lesson6.homework3.ex1_garden;
 
 import org.javaacademy.module2.lesson6.homework3.ex1_garden.fruit.Apple;
 import org.javaacademy.module2.lesson6.homework3.ex1_garden.fruit.Apricot;
-import org.javaacademy.module2.lesson6.homework3.ex1_garden.fruit.Fruit;
 
 /**
  * Задание №1: Сад
@@ -16,12 +15,14 @@ import org.javaacademy.module2.lesson6.homework3.ex1_garden.fruit.Fruit;
 
 public class Runner {
     public static void main(String[] args) {
-        Garden appleFunctional = () -> new Apple();
-        Fruit apple = appleFunctional.fruitCultivation();
-        System.out.println(apple);
+        Apple apple = new Apple();
+        Apricot apricot = new Apricot();
 
-        Garden apricotFunctional = () -> new Apricot();
-        Fruit apricot = apricotFunctional.fruitCultivation();
-        System.out.println(apricot);
+        Garden<Apple> appleGarden = () -> new Apple();
+        Garden<Apricot> apricotGarden = () -> new Apricot();
+        Apple grow = appleGarden.get();
+
+        System.out.println(apricotGarden.get());
+        System.out.println(grow);
     }
 }

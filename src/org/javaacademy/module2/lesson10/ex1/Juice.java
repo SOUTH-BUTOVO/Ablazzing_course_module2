@@ -1,0 +1,12 @@
+package org.javaacademy.module2.lesson10.ex1;
+
+public class Juice extends Product {
+    public Juice(Integer price) {
+        super(price);
+    }
+
+    public void smell() {
+        System.out.println("Ароматный сок");
+    }
+
+}
