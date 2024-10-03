@@ -1,11 +1,9 @@
 package org.javaacademy.module2.lesson10.homework5;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
-import java.util.Arrays;
 
 /**
  * Запрещено изменять модификаторы доступа!
@@ -16,19 +14,20 @@ import java.util.Arrays;
  * (увеличивал у себя деньги и обнулял деньги банка)
  * Вызвать здесь метод stealMoney
  * Распечатать вора и банк
- *
+ * <p>
  * Итог:
  * Вор - 1500 денег
  * Банк - 0 денег
  */
 
 public class Runner {
-    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException {
+    public static void main(String[] args) throws NoSuchMethodException, InvocationTargetException,
+            IllegalAccessException, InstantiationException {
         Bank bank = createBank(BigDecimal.valueOf(1500));
         System.out.println(bank + " Банк до ограбления");
 
-        createThief();
-        stealMoney(bank);
+        Thief thief = createThief();
+        stealMoney(thief, bank);
     }
 
     // Создаём банк с 1500 денег
@@ -44,21 +43,24 @@ public class Runner {
     }
 
     // Создаём вора
-    private static void createThief() throws NoSuchMethodException, InvocationTargetException,
+    private static Thief createThief() throws NoSuchMethodException, InvocationTargetException,
             InstantiationException, IllegalAccessException {
         Class<Thief> thiefClass = Thief.class;
         Constructor<Thief> thiefConstructor = thiefClass.getDeclaredConstructor();
         thiefConstructor.setAccessible(true);
-        System.out.println(thiefConstructor.newInstance());
+        System.out.println(thiefConstructor.newInstance() + "    Деньги вора до ограбления");
+        Thief thief = thiefConstructor.newInstance();
+        return thief;
     }
 
     // Вызываем метод у вора
-    private static void stealMoney(Bank bank) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    private static void stealMoney(Thief thief, Bank bank) throws NoSuchMethodException,
+            InvocationTargetException, IllegalAccessException {
         Class<Thief> thiefClass = Thief.class;
-        // Узнаём название метода
+        // Узнаём сигнатуру метода, для использования в .getDeclaredMethod
         //System.out.println(Arrays.toString(thiefClass.getDeclaredMethods()));
         Method methodStealMoney = thiefClass.getDeclaredMethod("stealMoney", Bank.class);
         methodStealMoney.setAccessible(true);
-        methodStealMoney.invoke(bank);
+        methodStealMoney.invoke(thief, bank);
     }
 }

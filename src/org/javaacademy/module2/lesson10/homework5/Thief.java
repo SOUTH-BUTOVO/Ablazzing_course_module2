@@ -12,13 +12,15 @@ public class Thief {
         this.money = BigDecimal.ZERO;
     }
 
-    private void stealMoney(Bank bank) {
+    private void stealMoney(Bank bank) throws NoSuchMethodException, NoSuchFieldException {
         System.out.println("Вор залез в хранилище банка");
-//        if (bank > 0) {
-//            System.out.println("Вор крадёт все деньги банка");
-//            this.money = bank;
-//
-//        }
+
+        // Не понял как тут переделать, деньги банка 1500 приходят, а сделать ничего не могу.
+        if (bank > 0) {
+            System.out.println("Вор крадёт все деньги банка");
+            this.money = bank;
+            bank = 0;
+        }
     }
 
     @Override
